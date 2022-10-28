@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/konva@8.3.13/konva.min.js"></script>
+
+</head>
+
+<body>
+    <p>HelloWorld</p>
+    <div id="container">
+
+        <canvas id="canvas" height="500" width="500" style="background-color: tomato">
+    </div>
+
+    </canvas>
+
+
+
+
+    <script>
+        console.log("Hello world");
+        const spacing = 40;
+
+        // init canas
+        const canvas = document.getElementById("canvas");
+
+        // variables
+        console.log(canvas)
+        const ctx = canvas.getContext("2d");
+        const w_half = canvas.width / 2;
+        const h_half = canvas.height / 2;
+        var radius = undefined;
+
+        if (w_half > h_half) {
+            radius = h_half - spacing;
+        } else {
+            radius = w_half - spacing;
+        }
+
+        // inti kova
+        const stage = new Konva.Stage({
+            container: 'container',
+            width: h_half * 2,
+            height: 2 * w_half
+        });
+
+        // then create layer
+        var layer = new Konva.Layer();
+
+        // create our shape
+        // var circle = new Konva.Circle({
+        //     x: stage.width() / 2,
+        //     y: stage.height() / 2,
+        //     radius: 70,
+        //     fill: 'red',
+        //     stroke: 'black',
+        //     strokeWidth: 4,
+        // });
+
+        // circle.on('click', function () {
+        //     console.log('Mouseout triangle');
+        //     // Change the fill color
+        //     circle.fill("#" + Math.floor(Math.random() * 16777215).toString(16));
+        // });
+
+
+
+
+
+        const n = 10;
+
+        let circles = [];
+
+        for (let index = 0; index < n; index++) {
+            x = new Konva.Circle({
+                x: Math.cos(2 * Math.PI / n * index) * radius + w_half,
+                y: Math.sin(2 * Math.PI / n * index) * radius + h_half,
+                radius: 25,
+                fill: 'red',
+                stroke: 'black',
+                strokeWidth: 4,
+            });
+
+            x.on('click', function () {
+                console.log('Mouseout triangle');
+                // Change the fill color
+                x.fill("#" + Math.floor(Math.random() * 16777215).toString(16));
+            });
+            layer.add(x);
+
+        }
+
+
+
+
+        stage.add(layer);
+
+
+        layer.draw();
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
